@@ -1,4 +1,4 @@
-Proyecto: Simulación de Comportamientos en Redes Inalámbricas
+## Proyecto: Simulación de Comportamientos en Redes Inalámbricas
 Descripción del Proyecto
 Este proyecto consiste en una simulación desarrollada en Python donde se modelan diferentes comportamientos de nodos dentro de un entorno de red inalámbrica.
 
