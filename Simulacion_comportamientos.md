@@ -1,63 +1,115 @@
+Proyecto: Simulación de Comportamientos en Redes Inalámbricas
+Descripción del Proyecto
+Este proyecto consiste en una simulación desarrollada en Python donde se modelan diferentes comportamientos de nodos dentro de un entorno de red inalámbrica.
 
-Simulación 
+Se implementan tres tipos de comportamientos de nodos:
 
-Objetivos
+Nodos altruistas → Comparten recursos sin restricciones.
 
-Simular y analizar el comportamiento de distintos tipos de nodos en una red inalámbrica a través de un programa desarrollado en Python.
+Nodos egoístas → Usan sus recursos solo para sí mismos.
 
-Objetivos Específicos:
-Simular 5 nodos con comportamiento altruista.
+Nodos cooperativos → Comparten recursos solo de manera controlada cuando detectan que otro nodo tiene recursos bajos.
 
-Simular 5 nodos con comportamiento egoísta.
+La finalidad de esta simulación es observar cómo estos comportamientos afectan a la gestión de recursos dentro de una red.
 
-Simular 5 nodos con comportamiento cooperativo utilizando concurrencia (multitarea).
+Lenguaje de Programación Utilizado
+Python 3.x
 
-Mostrar estadísticas de comportamiento y rendimiento de cada nodo.
+Estructura de la Simulación
+Se simulan 15 nodos distribuidos así:
 
-Analizar el impacto de cada comportamiento en la red simulada.
+Tipo de Nodo	Cantidad de Nodos
+Altruista	5
+Egoísta	5
+Cooperativo	5
+Cada nodo inicia con 100 recursos y en cada ronda ejecuta su comportamiento según su tipo.
 
-Desarrollo de la Simulación
-La simulación consiste en crear 15 nodos en total:
+La simulación se desarrolla en 5 rondas.
 
-Tipo de Nodo	Cantidad	Característica Principal
-Altruista	5	Ayuda a retransmitir paquetes de otros nodos.
-Egoísta	5	Solo se preocupa por enviar sus propios paquetes.
-Cooperativo	5	Realiza tareas en paralelo o concurrentes.
-El comportamiento de cada nodo fue implementado mediante una clase en Python llamada Nodo, con sus respectivos métodos para enviar paquetes o ejecutar tareas concurrentes.
+Instrucciones de Ejecución
+Tener instalado Python 3.x
 
-Los nodos altruistas ayudan a otros nodos a enviar sus paquetes. Los nodos egoístas simplemente envían su propio paquete sin colaborar con los demás. Por último, los nodos cooperativos ejecutan varias tareas de forma paralela utilizando la librería threading de Python, lo cual simula un uso eficiente de recursos computacionales.
+Ejecutar el siguiente comando:
 
-Explicación del Código
-El programa está dividido en las siguientes partes:
+bash
+Copy
+Edit
+python simulacion.py
+Código Fuente
+python
+Copy
+Edit
+import random
 
-Definición de la clase Nodo con atributos: id, tipo, paquetes_enviados y paquetes_ayudados.
+class Nodo:
+    def __init__(self, id, tipo):
+        self.id = id
+        self.tipo = tipo  # altruista, egoista, cooperativo
+        self.recursos = 100
 
-Método enviar_paquete() que controla el comportamiento según el tipo de nodo.
+    def consumir_recursos(self):
+        consumo = random.randint(5, 15)
+        self.recursos -= consumo
+        if self.recursos < 0:
+            self.recursos = 0
 
-Método ejecucion_concurrente() para los nodos cooperativos, donde se ejecutan 3 tareas simultáneas utilizando hilos.
+    def compartir_recursos(self, red):
+        for nodo in red:
+            if nodo.id != self.id:
+                nodo.recursos += 5
+                self.recursos -= 5
+                if self.recursos < 0:
+                    self.recursos = 0
 
-Creación de los 15 nodos y ejecución de 3 rondas de simulación donde todos los nodos interactúan.
+    def compartir_controlado(self, red):
+        for nodo in red:
+            if nodo.id != self.id and nodo.recursos < 50:
+                nodo.recursos += 5
+                self.recursos -= 5
+                if self.recursos < 0:
+                    self.recursos = 0
 
-Mostrar al finalizar las estadísticas generales de la red.
+    def comportamiento(self, red):
+        if self.tipo == "altruista":
+            self.compartir_recursos(red)
+        elif self.tipo == "egoista":
+            self.consumir_recursos()
+        elif self.tipo == "cooperativo":
+            self.compartir_controlado(red)
 
-El lenguaje utilizado es Python por su simplicidad y versatilidad, además de contar con soporte para programación concurrente.
+# Crear la red de nodos
+red = []
 
-Resultados Obtenidos
-Al ejecutar el programa, se observaron los siguientes comportamientos:
+# Crear nodos altruistas
+for i in range(5):
+    red.append(Nodo(i, "altruista"))
 
-Los nodos altruistas colaboraron significativamente con los demás, aumentando su contador de ayuda.
+# Crear nodos egoistas
+for i in range(5, 10):
+    red.append(Nodo(i, "egoista"))
 
-Los nodos egoístas realizaron un mínimo de interacción, limitándose a sus propios envíos.
+# Crear nodos cooperativos
+for i in range(10, 15):
+    red.append(Nodo(i, "cooperativo"))
 
-Los nodos cooperativos demostraron un uso eficiente de tareas en paralelo, completando múltiples procesos en menor tiempo.
+# Simulación de 5 rondas
+for ronda in range(1, 6):
+    print(f"\n--- Ronda {ronda} ---")
+    for nodo in red:
+        nodo.comportamiento(red)
+        print(f"Nodo {nodo.id} ({nodo.tipo}) - Recursos: {nodo.recursos}")
 
-Se obtuvieron estadísticas finales donde se muestra la cantidad de paquetes enviados por cada nodo y la cantidad de ayudas realizadas.
+print("\n--- Simulación Finalizada ---")
+print("\nEstado final de los nodos:")
+for nodo in red:
+    print(f"Nodo {nodo.id} ({nodo.tipo}) - Recursos: {nodo.recursos}")
+Resultado Final
+Al finalizar la simulación se obtiene un estado de recursos diferente para cada nodo, dependiendo de su comportamiento.
 
-Conclusiones
-Los nodos altruistas son esenciales en una red colaborativa ya que mejoran la conectividad y eficiencia general.
+Se puede observar que:
 
-Los nodos egoístas representan un desafío, ya que solo buscan su propio beneficio, lo que puede perjudicar el rendimiento global de la red.
+Los nodos altruistas suelen quedarse sin recursos más rápido por compartir constantemente.
 
-Los nodos cooperativos, mediante el uso de concurrencia, logran una mejor distribución de las tareas y optimización de recursos computacionales.
+Los nodos egoístas mantienen recursos, pero no ayudan a los demás.
 
-La simulación desarrollada permitió entender de manera práctica cómo influyen estos comportamientos en una red inalámbrica.
+Los nodos cooperativos logran un equilibrio mejor al compartir solo cuando es necesario.
