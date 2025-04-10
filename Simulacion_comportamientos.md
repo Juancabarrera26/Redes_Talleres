@@ -1,4 +1,5 @@
 ## Proyecto: Simulación de Comportamientos en Redes Inalámbricas
+
 Descripción del Proyecto
 Este proyecto consiste en una simulación desarrollada en Python donde se modelan diferentes comportamientos de nodos dentro de un entorno de red inalámbrica.
 
@@ -12,10 +13,10 @@ Nodos cooperativos → Comparten recursos solo de manera controlada cuando detec
 
 La finalidad de esta simulación es observar cómo estos comportamientos afectan a la gestión de recursos dentro de una red.
 
-Lenguaje de Programación Utilizado
+## Lenguaje de Programación Utilizado
 Python 3.x
 
-Estructura de la Simulación
+## Estructura de la Simulación
 Se simulan 15 nodos distribuidos así:
 
 Tipo de Nodo	Cantidad de Nodos
