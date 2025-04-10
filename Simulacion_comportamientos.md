@@ -1,7 +1,6 @@
-## Proyecto: Simulación de Comportamientos en Redes Inalámbricas
+## Simulación de Comportamientos en Redes Inalámbricas
 
-Descripción del Proyecto
-Este proyecto consiste en una simulación desarrollada en Python donde se modelan diferentes comportamientos de nodos dentro de un entorno de red inalámbrica.
+En esta simulación consiste en una simulación desarrollada en Python donde se modelan diferentes comportamientos de nodos dentro de un entorno de red inalámbrica.
 
 Se implementan tres tipos de comportamientos de nodos:
 
@@ -106,3 +105,18 @@ Los nodos altruistas suelen quedarse sin recursos más rápido por compartir con
 Los nodos egoístas mantienen recursos, pero no ayudan a los demás.
 
 Los nodos cooperativos logran un equilibrio mejor al compartir solo cuando es necesario.
+
+# Resultados
+
+![Captura de pantalla 2025-04-09 222304](https://github.com/user-attachments/assets/5fde8694-8ab4-48b5-b0bd-ea26f40422a1)
+![Captura de pantalla 2025-04-09 222313](https://github.com/user-attachments/assets/547c6f10-0ee2-4c4e-a669-c134c3531035)
+![Captura de pantalla 2025-04-09 222322](https://github.com/user-attachments/assets/8ea5a989-6b49-4962-b30d-bdf84681ec97)
+![Captura de pantalla 2025-04-09 222331](https://github.com/user-attachments/assets/fc930cbd-74fb-4c31-9302-8b315c571bcd)
+![Captura de pantalla 2025-04-09 222342](https://github.com/user-attachments/assets/5df2788a-1b8f-4a70-9560-a80c53ff98d5)
+![Captura de pantalla 2025-04-09 222351](https://github.com/user-attachments/assets/16136a54-5153-43a0-b339-4aaf6aa31330)
+![Captura de pantalla 2025-04-09 222358](https://github.com/user-attachments/assets/79728496-42f0-4c14-9a3c-a4074a826b10)
+
+
+
+
+
