@@ -32,14 +32,6 @@ Tener instalado Python 3.x
 
 Ejecutar el siguiente comando:
 
-bash
-Copy
-Edit
-python simulacion.py
-Código Fuente
-python
-Copy
-Edit
 import random
 
 class Nodo:
@@ -104,7 +96,7 @@ print("\n--- Simulación Finalizada ---")
 print("\nEstado final de los nodos:")
 for nodo in red:
     print(f"Nodo {nodo.id} ({nodo.tipo}) - Recursos: {nodo.recursos}")
-Resultado Final
+## Resultado Final
 Al finalizar la simulación se obtiene un estado de recursos diferente para cada nodo, dependiendo de su comportamiento.
 
 Se puede observar que:
