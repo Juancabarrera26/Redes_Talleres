@@ -31,36 +31,15 @@ Tener instalado Python 3.x
 
 Ejecutar el siguiente comando:
 
-```
+```python
 import random
+import time
 
 class Nodo:
     def __init__(self, id, tipo):
         self.id = id
-        self.tipo = tipo  # altruista, egoista, cooperativo
-        self.recursos = 100
-
-    def consumir_recursos(self):
-        consumo = random.randint(5, 15)
-        self.recursos -= consumo
-        if self.recursos < 0:
-            self.recursos = 0
-
-    def compartir_recursos(self, red):
-        for nodo in red:
-            if nodo.id != self.id:
-                nodo.recursos += 5
-                self.recursos -= 5
-                if self.recursos < 0:
-                    self.recursos = 0
-
-    def compartir_controlado(self, red):
-        for nodo in red:
-            if nodo.id != self.id and nodo.recursos < 50:
-                nodo.recursos += 5
-                self.recursos -= 5
-                if self.recursos < 0:
-                    self.recursos = 0
+        self.tipo = tipo  
+        self.recursos = 100  
 
     def comportamiento(self, red):
         if self.tipo == "altruista":
@@ -69,7 +48,53 @@ class Nodo:
             self.consumir_recursos()
         elif self.tipo == "cooperativo":
             self.compartir_controlado(red)
-            
+
+    def compartir_recursos(self, red):
+        for nodo in red:
+            if nodo.id != self.id:
+                nodo.recursos += 5
+                self.recursos -= 5
+        print(f"Nodo {self.id} (Altruista) compartió recursos.")
+
+    def consumir_recursos(self):
+        self.recursos -= 10
+        print(f"Nodo {self.id} (Egoista) consumió recursos para sí mismo.")
+
+    def compartir_controlado(self, red):
+        for nodo in red:
+            if nodo.id != self.id and nodo.recursos < 50:
+                nodo.recursos += 3
+                self.recursos -= 3
+        print(f"Nodo {self.id} (Cooperativo) compartió recursos de forma controlada.")
+
+# Crear la red de nodos
+red = []
+
+# Crear nodos altruistas
+for i in range(5):
+    red.append(Nodo(i, "altruista"))
+
+# Crear nodos egoistas
+for i in range(5, 10):
+    red.append(Nodo(i, "egoista"))
+
+# Crear nodos cooperativos
+for i in range(10, 15):
+    red.append(Nodo(i, "cooperativo"))
+
+# Simulación de varias rondas
+print("Simulación de red inalámbrica con diferentes comportamientos:\n")
+
+for ronda in range(1, 6):
+    print(f"--- Ronda {ronda} ---")
+    for nodo in red:
+        nodo.comportamiento(red)
+    time.sleep(1)  
+
+print("\nEstado final de recursos de cada nodo:")
+for nodo in red:
+    print(f"Nodo {nodo.id} ({nodo.tipo}) → Recursos: {nodo.recursos}")
+
 ``` 
 
 # Crear la red de nodos
