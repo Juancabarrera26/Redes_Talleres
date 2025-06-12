@@ -31,7 +31,7 @@ Tener instalado Python 3.x
 
 Ejecutar el siguiente comando:
 
-'''
+’’’
 import random
 
 class Nodo:
@@ -69,7 +69,8 @@ class Nodo:
             self.consumir_recursos()
         elif self.tipo == "cooperativo":
             self.compartir_controlado(red)
-'''
+            
+’’’
 
 # Crear la red de nodos
 red = []
